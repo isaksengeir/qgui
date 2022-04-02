@@ -62,28 +62,11 @@ class QguiSettings(Toplevel):
 
         if not os.path.isfile(self.app.settings_path + '/qsubmit'):
             newfile = open(self.app.settings_path + '/qsubmit','w')
-            newfile.write("""#!/bin/bash#
-
-#SBATCH --job-name=CM_job
-
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=20                             
-#SBATCH --account=nn8999k 
-#              d-hh:mm:ss
-#SBATCH --time=0-02:00:00    
-#SBATCH --mem-per-cpu=1GB
-                             
-# MAIL OR NOT?
-#SBATCH --mail-type=END,FAIL
-                            
-module purge
-module load Q6/GCC-11.2.0
-                             
-export TMP=/tmp
-export TEMP=/tmp
-export TMPDIR=/tmp
-
-\n#Qdyn I/O\n """)
+            newfile.write("#!/bin/bash\n\n#SBATCH --job-name=CM_job\n#SBATCH --nodes=1\n#SBATCH --ntasks-per-node=20\n"
+                          "#SBATCH --account=nn8999k\n#              d-hh:mm:ss\n#SBATCH --time=0-02:00:00\n"
+                          "#SBATCH --mem-per-cpu=1GB\n\n# MAIL OR NOT?\n#SBATCH --mail-type=END,FAIL\n\n"
+                          "module purge\nmodule load Q6/GCC-11.2.0\nexport TMP=/tmp\nexport TEMP=/tmp\n"
+                          "export TMPDIR=/tmp\n\n#Qdyn I/O\n")
             newfile.close()
 
         self.fileEdit = FileEdit(self, self.app.settings_path + '/qsubmit')
