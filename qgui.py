@@ -139,7 +139,7 @@ class QGui(object):
 
             os.system('rm %s' % self.settings_path + '/qupdate')
 
-    def dset_default_qsettings(self):
+    def set_default_qsettings(self):
         """
         Sets q_settings to default
         :return: q_settings dictionary
